@@ -2,8 +2,15 @@
 
 import { FormStepComponentType } from "./FormTypeStepProps"
 import { useRouter , useSearchParams } from "next/navigation"
-import { Formik , Form }  from 'formik'
+import { Formik , Form  }  from 'formik'
+import { userSchema } from "./userSchema";
+import { InferType } from "yup";
+import api from '../../../new-step-mult-schema/services/api/__api';
+import { error } from "console";
+import { useUserContext } from "@/contexts";
 
+
+type userDataFormSchema = InferType<typeof userSchema>;
 
 type Props = {
     steps : FormStepComponentType[];
@@ -21,7 +28,43 @@ export default function SignUpStepComponent({steps}:Props){
     const StepComponent = steps.at(pageIndex - 1);
     {/** create- its opitional- a verification variable- boolean verification- to have sure of rendering */}
     const isThereStepComponent = !!StepComponent;
+
+    const { createUser } = useUserContext();
     
+    const handleSubmitFormik = (data:userDataFormSchema) =>{
+        
+        const dataValues = {
+            username:data.username,
+            nickname:data.nickname,
+            email:data.email,
+            phone:data.phone,
+            password:data.password
+        }
+
+        createUser(dataValues);
+
+      {/**
+           api.post('/post',{
+
+        username: data.username,
+        nickname:data.nickname,
+        email:data.email,
+        phone:data.phone,
+        password:data.password
+
+        }).then((resolve)=>{
+            console.log(resolve.data);
+        }).catch(error=>{
+            console.log(error);
+        })
+       
+       
+       
+        console.log(data);
+    */}
+    }
+
+
     return (
         <div>
         
@@ -35,12 +78,10 @@ export default function SignUpStepComponent({steps}:Props){
        
         <Formik
          
-         onSubmit={(values:any)=>{
-            console.log(values);
-         }}
+         onSubmit={handleSubmitFormik}
+         validationSchema={userSchema}
          initialValues={
           {
-
            username:'',
            nickname:'',
            email:'',
