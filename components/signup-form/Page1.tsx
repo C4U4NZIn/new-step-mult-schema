@@ -3,7 +3,7 @@ import { FormStepComponentType } from "./FormTypeStepProps"
 import { Button } from '@mui/material';
 import { useFormikContext } from "formik";
 import FormikInput from "../formik-inputs/formikInput";
-
+import globalCss from '../../app/(public)/SignUp/css/global.module.css';
 import { InferType } from "yup";
 import { userSchema } from "./userSchema";
 
@@ -18,7 +18,7 @@ const Page1:FormStepComponentType = (props) => {
     return (
         <div>
        
-       <div>
+       <div className={globalCss.containerInputs}>
         
         <FormikInput name="username" label="Name" type="text" />
         <FormikInput name="nickname" label="Nickname" type="text"/>

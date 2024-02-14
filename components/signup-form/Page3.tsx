@@ -5,7 +5,7 @@ import FormikInput from "../formik-inputs/formikInput";
 import { useFormikContext } from "formik";
 import { InferType } from 'yup'
 import { userSchema } from "./userSchema";
-
+import globalCss from '../../app/(public)/SignUp/css/global.module.css';
 
  const Page3:FormStepComponentType = (props) => {
     const { errors } = useFormikContext<InferType<typeof userSchema>>();
@@ -17,7 +17,7 @@ import { userSchema } from "./userSchema";
     
     return (
      <div>
-        <div>
+        <div className={globalCss.containerInputs}>
         
         <FormikInput name="password" label="Password" type="password"/>
         <FormikInput name="confirmPassword" label="Confirm Password" type="password"/>

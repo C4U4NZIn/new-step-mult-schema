@@ -1,0 +1,25 @@
+.containerInputs{
+  
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     margin-top: 10rem;
+
+}
+.containerDivsColumn{
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+}
+
+.containerDivsRow{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.Button{
+  width: 12rem;
+}
