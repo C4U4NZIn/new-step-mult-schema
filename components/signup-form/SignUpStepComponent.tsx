@@ -8,8 +8,11 @@ import { InferType } from "yup";
 import api from '../../../new-step-mult-schema/services/api/__api';
 import { error } from "console";
 import { useUserContext } from "@/contexts";
-
-
+import { Step, StepLabel, Stepper } from "@mui/material";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LockIcon from '@mui/icons-material/Lock';
+import CheckIcon from '@mui/icons-material/Check';
+import CustomizedStepperIcon from "../mui-components/stepper";
 type userDataFormSchema = InferType<typeof userSchema>;
 
 type Props = {
@@ -30,7 +33,11 @@ export default function SignUpStepComponent({steps}:Props){
     const isThereStepComponent = !!StepComponent;
 
     const { createUser } = useUserContext();
+ 
+     const steps2 = ['','',''];
     
+     const steps2Index = pageIndex - 1;
+
     const handleSubmitFormik = (data:userDataFormSchema) =>{
         
         const dataValues = {
@@ -100,35 +107,44 @@ export default function SignUpStepComponent({steps}:Props){
 
          
         {!!isThereStepComponent && (
-            <StepComponent
-            
-            onNext={()=>{
-            
-        
-            if((pageIndex < steps.length)){
-               const nextPage = pageIndex + 1;
-               router.push(`/SignUp?step=${nextPage}`);
-          
-            }
 
-            }}
-          
-            onPrevious={()=>{
-             
-             if(pageIndex > 1){
-               const previousPage = pageIndex-1;
-               router.push(`/SignUp?step=${previousPage}`);
-            
-            }else{
-            
-                router.push('/SignUp');
-            
-            }
 
-          
-            }}
-            
-            />
+       <>
+         <CustomizedStepperIcon/>
+     <StepComponent
+
+      onNext={()=>{
+
+
+       if((pageIndex < steps.length)){
+        const nextPage = pageIndex + 1;
+        router.push(`/SignUp?step=${nextPage}`);
+
+       }
+ 
+         }}
+
+onPrevious={()=>{
+ 
+ if(pageIndex > 1){
+   const previousPage = pageIndex-1;
+   router.push(`/SignUp?step=${previousPage}`);
+
+}else{
+
+    router.push('/SignUp');
+
+}
+
+
+}}
+
+/>
+       
+       
+       </>
+
+
         )}
 
         </Form>
