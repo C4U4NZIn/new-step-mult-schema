@@ -3,7 +3,6 @@ import { Step, Stepper , StepLabel } from "@mui/material";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockIcon from '@mui/icons-material/Lock';
 import CheckIcon from '@mui/icons-material/Check';
-import MailIcon from '@mui/icons-material/Mail';
 import { StepIconProps } from "@mui/material";
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 
@@ -29,11 +28,11 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
       },
     },
     [`& .${stepConnectorClasses.line}`]: {
-      height: 3,
-      border: 0,
+      height: 1.5,
+      border: 0.675,
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
-      borderRadius: 1,
+      borderRadius: 0.875,
     },
   }));
   
@@ -46,8 +45,8 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
     zIndex: 1,
     color: '#fff',
-    width: 50,
-    height: 50,
+    width: 40.765,
+    height: 40.765  ,
     display: 'flex',
     borderRadius: '50%',
     justifyContent: 'center',
@@ -72,8 +71,8 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     const icons:{[index:string]:React.ReactElement} = {
 
     1: <PersonOutlineIcon/>,
-    2: <MailIcon/>,
-    3: <LockIcon/>
+    2: <LockIcon/>,
+    3: <CheckIcon/>
 
     }
 

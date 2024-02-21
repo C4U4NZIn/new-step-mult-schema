@@ -34,10 +34,9 @@ export default function SignUpStepComponent({steps}:Props){
 
     const { createUser } = useUserContext();
  
-     const steps2 = ['','',''];
     
-     const steps2Index = pageIndex - 1;
-
+    {/** In next time make a logic to uncessfully void data  */}
+    {/* make a short logic in yup to compare the password e the confirmPassword*/}
     const handleSubmitFormik = (data:userDataFormSchema) =>{
         
         const dataValues = {
@@ -87,8 +86,7 @@ export default function SignUpStepComponent({steps}:Props){
          
          onSubmit={handleSubmitFormik}
          validationSchema={userSchema}
-         initialValues={
-          {
+         initialValues={{
            username:'',
            nickname:'',
            email:'',
@@ -96,63 +94,53 @@ export default function SignUpStepComponent({steps}:Props){
            password:'',
            confirmPassword:''
           }
-
-         }
-        
+        }
         >
 
 
         <Form>
 
+       {!!isThereStepComponent && (
 
+    
+               <div>
+
+                   <CustomizedStepperIcon/>
+
+                   <StepComponent
+                  onNext={()=>{
+          
+                 if((pageIndex < steps.length)){
+                 const nextPage = pageIndex + 1;
+                 router.push(`/SignUp?step=${nextPage}`);
+          
+                }
+          
+                  }}
+          
+                 onPrevious={()=>{
+          
+                 if(pageIndex > 1){
+                const previousPage = pageIndex-1;
+            router.push(`/SignUp?step=${previousPage}`);
+          
+                 }else{
+          
+                router.push('/SignUp');
+          
+                 }
+          
+          
+                    }}
+                     
+                     />
+
+               </div>
          
-        {!!isThereStepComponent && (
-
-
-       <>
-         <CustomizedStepperIcon/>
-     <StepComponent
-
-      onNext={()=>{
-
-
-       if((pageIndex < steps.length)){
-        const nextPage = pageIndex + 1;
-        router.push(`/SignUp?step=${nextPage}`);
-
-       }
- 
-         }}
-
-onPrevious={()=>{
- 
- if(pageIndex > 1){
-   const previousPage = pageIndex-1;
-   router.push(`/SignUp?step=${previousPage}`);
-
-}else{
-
-    router.push('/SignUp');
-
-}
-
-
-}}
-
-/>
-       
-       
-       </>
-
-
-        )}
+         )}
 
         </Form>
-
-
-        </Formik>
-
-        
-        </div>
+      </Formik>
+      </div>
     )
 }

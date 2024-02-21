@@ -1,42 +1,48 @@
 "use client";
 import { FormStepComponentType } from "./FormTypeStepProps"
-import { Button } from '@mui/material';
-import { useFormikContext } from "formik";
+import { Button } from '@mui/material'
 import FormikInput from "../formik-inputs/formikInput";
-import globalCss from '../../app/(public)/SignUp/css/global.module.css';
+import { useFormikContext } from "formik";
 import { InferType } from "yup";
 import { userSchema } from "./userSchema";
-
-  
+import globalCss from '../../app/(public)/SignUp/css/global.module.css';
 
 const Page1:FormStepComponentType = (props) => {
-    const { errors } = useFormikContext<InferType<typeof userSchema>>();
-    const hasErrors = errors.username || errors.nickname;
 
-
+     const { errors } = useFormikContext<InferType<typeof userSchema>>();
+     const hasErrors = errors.email || errors.phone;
 
     return (
         <div>
-       
-       <div className={globalCss.containerInputs}>
+      
+      <div className={globalCss.containerInputs}>
         
-        <FormikInput name="username" label="Name" type="text" />
-        <FormikInput name="nickname" label="Nickname" type="text"/>
+        <FormikInput name="email" label="Email" type="text"/>
+        <FormikInput name="phone" label="Telefone" type="tel"/>
         
         </div>    
+    
 
+    <Button
+    onClick={props.onNext}
+    variant="contained"
+    disabled = {!!hasErrors}
+    >
+        Próximo
+    </Button>
 
-       <Button
-       variant="contained"
-       onClick={props.onNext}
-       disabled ={!!hasErrors}
-       >
-        Avançar
-       </Button>
-
+    <Button 
+    onClick={props.onPrevious}
+    variant="contained"
+    disabled={!!hasErrors}
+    >
+        Voltar
+    </Button>
 
         </div>
     )
+
+
 }
 
 export default Page1;
