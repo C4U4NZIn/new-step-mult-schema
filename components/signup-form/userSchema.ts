@@ -20,18 +20,18 @@ export const userSchema = object({
     .required('Esse campo deve ser preenchido'),
 
     phone: string()
-    .min(1, 'Phone is required')
-    .max(20, 'Phone is invalid')
+    .min(1, 'O telefone é inválido')
+    .max(20, 'O telefone é inválido')
     .required('Esse campo deve ser preenchido corretamente'),
    
     password:  string()
-    .min(8,"Your password must be a 8 caracters")
+    .min(8,"Sua senha deve ter no mínimo 8 caracteres")
     .required('Esse campo deve ser válido')
     .matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Sua senha deve conter pelo menos um caracter em caixa alta , caixa baixa e um caracter númerico"),
     
     confirmPassword: string()
     .oneOf([ref('password')],'Os valores devem ser iguais')
-    .required('Esse campo deve ser válido')
+    .required('Sua senha deve ter no mínimo 8 caracteres')
     .matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,"Sua senha deve conter pelo menos um caracter em caixa alta , caixa baixa e um caracter númerico")
 
 
