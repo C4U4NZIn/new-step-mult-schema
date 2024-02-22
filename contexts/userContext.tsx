@@ -1,6 +1,7 @@
 'use client';
 import React, { Children, createContext, useContext , useState } from "react";
 import api from '../../new-step-mult-schema/services/api/__api';
+import axios from 'axios';
 
 type userType = {
     username:string;
@@ -33,7 +34,9 @@ const userContext = createContext({} as userContextType);
     );
 
     const createUser = (data:userType) =>{
-        
+       try {
+        if(data){
+             
         setUser(data);
         
         api.post('/post',{
@@ -51,6 +54,14 @@ const userContext = createContext({} as userContextType);
             })
            
             console.log(data);
+        }
+       } catch (error) {
+
+        if(axios.isAxiosError(error)){
+            console.log(error.response?.data);
+        }
+        
+       }
     }
 
   return (

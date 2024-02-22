@@ -1,5 +1,5 @@
 
-import { string , object , TypeFromShape } from 'yup';
+import { string , object , TypeFromShape , ref } from 'yup';
 export const userSchema = object({
 
     username: string()
@@ -26,11 +26,13 @@ export const userSchema = object({
    
     password:  string()
     .min(8,"Your password must be a 8 caracters")
-    .required('Esse campo deve ser válido'),
+    .required('Esse campo deve ser válido')
+    .matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, "Sua senha deve conter pelo menos um caracter em caixa alta , caixa baixa e um caracter númerico"),
     
     confirmPassword: string()
-    .min(8,'Your password must be a 8 caracters')
-    .required('Esse campo deve ser preenchido')
+    .oneOf([ref('password')],'Os valores devem ser iguais')
+    .required('Esse campo deve ser válido')
+    .matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,"Sua senha deve conter pelo menos um caracter em caixa alta , caixa baixa e um caracter númerico")
 
 
 
