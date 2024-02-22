@@ -5,7 +5,7 @@ import FormikInput from "../formik-inputs/formikInput";
 import { useFormikContext } from "formik";
 import { InferType } from "yup";
 import { userSchema } from "./userSchema";
-import globalCss from '../../app/(public)/SignUp/css/global.module.css';
+
 
 const Page1:FormStepComponentType = (props) => {
 
@@ -15,7 +15,7 @@ const Page1:FormStepComponentType = (props) => {
     return (
         <div>
       
-      <div className={globalCss.containerInputs}>
+      <div>
         
         <FormikInput name="email" label="Email" type="text"/>
         <FormikInput name="phone" label="Telefone" type="tel"/>
