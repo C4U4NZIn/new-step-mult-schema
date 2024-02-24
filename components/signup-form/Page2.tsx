@@ -8,8 +8,11 @@ import { userSchema } from "./userSchema";
 import globalCss from '../../app/(public)/SignUp/css/global.module.css';
 
  const Page2:FormStepComponentType = (props) => {
-    const { errors } = useFormikContext<InferType<typeof userSchema>>();
+    const { errors , values } = useFormikContext<InferType<typeof userSchema>>();
     const hasErrors = errors.password || errors.confirmPassword;
+    const isEmptyInputPassword = values.password === '';
+    const isEmptyInputConfirmPassword = values.confirmPassword ===''; 
+    const hasEmptyInput = isEmptyInputPassword || isEmptyInputConfirmPassword; 
     {/** Observation:
       1. The name on the FormikInput must be the same name in the initialValues 
       2. that there are in SignUp
@@ -27,7 +30,7 @@ import globalCss from '../../app/(public)/SignUp/css/global.module.css';
 <Button
     onClick={props.onNext}
     variant="contained"
-    disabled={!!hasErrors}
+    disabled={!!hasErrors || !!hasEmptyInput}
    >
      próximo
     </Button>
@@ -35,7 +38,7 @@ import globalCss from '../../app/(public)/SignUp/css/global.module.css';
     <Button 
     onClick={props.onPrevious}
     variant="contained"
-    disabled={!!hasErrors}
+    disabled={!!hasErrors || !!hasEmptyInput}
     >
         Voltar
     </Button>

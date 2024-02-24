@@ -10,10 +10,12 @@ import { userSchema } from "./userSchema";
   
 
 const Page3:FormStepComponentType = (props) => {
-    const { errors } = useFormikContext<InferType<typeof userSchema>>();
+    const { errors , values } = useFormikContext<InferType<typeof userSchema>>();
     const hasErrors = errors.username || errors.nickname;
-
-
+    const isEmptyUsernameInput = values.username === '';
+    const isEmptyNicknameInput = values.nickname === '';
+    const hasEmptyInput = isEmptyUsernameInput || isEmptyNicknameInput;
+    
 
     return (
         <div>
@@ -29,7 +31,7 @@ const Page3:FormStepComponentType = (props) => {
        <Button
        type="submit"
        variant="contained"
-       disabled ={!!hasErrors}
+       disabled ={!!hasErrors || !!hasEmptyInput}
        >
         Criar Conta
        </Button>
@@ -37,7 +39,7 @@ const Page3:FormStepComponentType = (props) => {
        <Button
        onClick={props.onPrevious}
        variant="contained"
-       disabled = {!!hasErrors}
+       disabled = {!!hasErrors || !!hasEmptyInput}
      >
        Voltar
        </Button>

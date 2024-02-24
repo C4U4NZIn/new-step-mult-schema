@@ -5,7 +5,7 @@ import { FieldInputProps , useField  } from "formik";
 
  type FormikTextFieldProps = { name:string } & TextFieldProps;
 
-  type TextFieldConfig = TextFieldProps & FieldInputProps<any>;
+  type TextFieldConfig = TextFieldProps & FieldInputProps<string>;
 
  const FormikInput = ({ name , ...props }:FormikTextFieldProps) => {
      const [field,meta] = useField(name);

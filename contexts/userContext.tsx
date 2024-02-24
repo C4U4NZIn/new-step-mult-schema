@@ -1,5 +1,5 @@
 'use client';
-import React, { Children, createContext, useContext , useState } from "react";
+import React, { createContext, useContext , useState } from "react";
 import api from '../../new-step-mult-schema/services/api/__api';
 import axios from 'axios';
 
@@ -10,10 +10,21 @@ type userType = {
     phone:string;
     password:string;
 }
+type jwtToken = {
+    acess_token:string;
+}
+type dataLoginParams = {
+    email:string;
+    password:string;
+}
+
+
 export type userContextType = {
     user: userType;
     createUser: (user:userType) => void; 
+    authUser:(token:jwtToken) => void;
 }
+
 
 const userContext = createContext({} as userContextType);
    
@@ -59,13 +70,43 @@ const userContext = createContext({} as userContextType);
 
         if(axios.isAxiosError(error)){
             console.log(error.response?.data);
+        }else{
+            console.log(error);
         }
         
        }
     }
 
+    const authUser = (token:jwtToken) =>{
+         return token;
+    }
+    const userLogin = async (data:dataLoginParams) =>{
+
+      if(data){
+
+       try {
+
+        const userLogin = await api.post('/login',{
+            email:data.email,
+            password:data.password
+        });
+           
+        
+       } catch (error) {
+        
+       }
+
+     
+    }
+
+
+
+    }
+
+
+
   return (
-      <userContext.Provider value={{ user , createUser}}>
+      <userContext.Provider value={{ user , createUser , authUser}}>
         {children}
       </userContext.Provider>
   ) 

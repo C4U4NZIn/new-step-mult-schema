@@ -5,7 +5,7 @@
      basic it must be a trivial thing
 
      Basically there`s a class that contains some constructor to , in future,
-     create a object of this or a class instance
+     create a object of this:class instance
 
 */}
 
