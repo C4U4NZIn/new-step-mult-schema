@@ -2,10 +2,16 @@
 
 import { TextField as MuiTextField , TextFieldProps } from "@mui/material";
 import { FieldInputProps , useField  } from "formik";
+import TextField from "./textFieldStyled";
+import React from "react";
+import { TextFieldInputProps } from "./types/propTypes";
 
  type FormikTextFieldProps = { name:string } & TextFieldProps;
+ type TextFieldConfig = TextFieldProps & FieldInputProps<string>;
 
-  type TextFieldConfig = TextFieldProps & FieldInputProps<string>;
+ type FormikTextFieldInputProps = {name:string} & TextFieldInputProps;
+ type TextFieldConfigStyled = TextFieldInputProps & FieldInputProps<any>;
+
 
  const FormikInput = ({ name , ...props }:FormikTextFieldProps) => {
      const [field,meta] = useField(name);
@@ -28,7 +34,7 @@ import { FieldInputProps , useField  } from "formik";
    style={{
     flex:1,
     width:'21.5rem',
-    height:'1.9rem',
+    height:'1rem',
     borderRadius:'5px'
    }}
   
@@ -39,4 +45,26 @@ import { FieldInputProps , useField  } from "formik";
 
 };
 
+const FormikStyledInput = ({name , ...props}:FormikTextFieldInputProps) =>{
+    const [field , meta] = useField(name);
+
+    const newStyledProps:TextFieldConfigStyled = {
+     ...field,
+     ...props
+    }
+    if(meta.error){
+     newStyledProps.error = true;
+     newStyledProps.textError = meta.error;
+    }
+   
+
+    return (
+         <TextField {...newStyledProps} />
+    )
+
+
+
+}
+
 export default FormikInput;
+export { FormikStyledInput };
