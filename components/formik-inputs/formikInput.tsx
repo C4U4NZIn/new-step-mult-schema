@@ -21,7 +21,20 @@ import { FieldInputProps , useField  } from "formik";
     newProps.helperText = meta.error;
 }
 
-   return <MuiTextField {...newProps} />
+   return <MuiTextField 
+   
+   {...newProps} 
+   
+   style={{
+    flex:1,
+    width:'21.5rem',
+    height:'1.9rem',
+    borderRadius:'5px'
+   }}
+  
+   sx={{ background: 'rgba(237, 237, 237, 1)' }}
+   
+   />
 
 
 };

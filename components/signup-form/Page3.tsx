@@ -1,6 +1,6 @@
 "use client";
 import { FormStepComponentType } from "./FormTypeStepProps"
-import { Button } from '@mui/material';
+import { Button , Box} from '@mui/material';
 import { useFormikContext } from "formik";
 import FormikInput from "../formik-inputs/formikInput";
 import globalCss from '../../app/(public)/SignUp/css/global.module.css';
@@ -20,12 +20,17 @@ const Page3:FormStepComponentType = (props) => {
     return (
         <div>
        
-       <div className={globalCss.containerInputs}>
-        
+   
+
+      <Box display='flex' flexDirection='column'>
+       
         <FormikInput name="username" label="Nome" type="text" />
         <FormikInput name="nickname" label="Apelido" type="text"/>
+
+      </Box>
         
-        </div>    
+        
+       
 
 
        <Button

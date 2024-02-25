@@ -13,6 +13,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LockIcon from '@mui/icons-material/Lock';
 import CheckIcon from '@mui/icons-material/Check';
 import CustomizedStepperIcon from "../mui-components/stepper";
+import styles from '../css/steps-components.module.css'
 type userDataFormSchema = InferType<typeof userSchema>;
 
 type Props = {
@@ -98,12 +99,21 @@ export default function SignUpStepComponent({steps}:Props){
         >
 
 
-        <Form>
+        <Form style={{
+             display: 'flex',
+             flexDirection: 'column',
+             height: '40rem',
+             width: '40rem',
+             marginTop:'16rem'
+
+        }}>
 
        {!!isThereStepComponent && (
 
     
-               <div>
+               <div style={{
+                gap:'10rem',
+               }}>
 
                    <CustomizedStepperIcon/>
 

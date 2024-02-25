@@ -1,6 +1,6 @@
 "use client";
 import { FormStepComponentType } from "./FormTypeStepProps"
-import { Button } from '@mui/material'
+import { Button , Box } from '@mui/material'
 import FormikInput from "../formik-inputs/formikInput";
 import { useFormikContext } from "formik";
 import { InferType } from "yup";
@@ -19,15 +19,29 @@ const Page1:FormStepComponentType = (props) => {
      const hasErrors = errors.email || errors.phone;
 
     return (
-        <div>
       
-      <div>
-        
-        <FormikInput name="email" label="Email" type="text"/>
-        <FormikInput name="phone" label="Telefone" type="tel"/>
-        
-        </div>    
     
+        
+    <Box 
+    sx={{
+        display:"flex",
+        flexDirection:"column",
+        gap:2
+    }}
+    >
+
+        <FormikInput 
+        name="email" 
+        label="Email" 
+        type="text" 
+        />
+        <FormikInput 
+        name="phone" 
+        label="Telefone" 
+        type="tel" 
+        />
+
+        <Box display='flex' flexDirection='row' justifyContent='space-between'>
 
     <Button
     onClick={props.onNext}
@@ -44,8 +58,17 @@ const Page1:FormStepComponentType = (props) => {
     >
         Voltar
     </Button>
+   
+    </Box>
 
-        </div>
+        </Box>
+
+        
+    
+    
+
+
+     
     )
 
 

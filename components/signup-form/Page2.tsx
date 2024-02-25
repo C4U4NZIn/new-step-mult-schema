@@ -1,6 +1,6 @@
 "use client";
 import { FormStepComponentType } from "./FormTypeStepProps"
-import { Button } from "@mui/material";
+import { Button , Box} from "@mui/material";
 import FormikInput from "../formik-inputs/formikInput";
 import { useFormikContext } from "formik";
 import { InferType } from 'yup'
@@ -20,12 +20,16 @@ import globalCss from '../../app/(public)/SignUp/css/global.module.css';
     
     return (
      <div>
-        <div className={globalCss.containerInputs}>
+     
+
+     <Box display='flex' flexDirection='column'>
         
         <FormikInput name="password" label="Senha" type="password"/>
         <FormikInput name="confirmPassword" label="Confirmar Senha" type="password"/>
         
-        </div>    
+
+     </Box>
+      
 
 <Button
     onClick={props.onNext}
